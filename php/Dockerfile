@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y \
     elinks \
     unzip \
     zip \
-    libssl-dev
+    libssl-dev \
+    libzip-dev \
+    git
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/var/lib/postgresql
 RUN docker-php-ext-install    pdo_pgsql 
@@ -22,3 +24,17 @@ RUN docker-php-ext-install    pdo_mysql
 RUN docker-php-ext-install    pgsql 
 RUN docker-php-ext-install    gd 
 RUN docker-php-ext-install    intl
+RUN docker-php-ext-install    zip
+
+RUN apt-get install -y git libzip-dev
+
+RUN (cd ~ && curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php --install-dir=/usr/local/bin --filename=composer)
+
+RUN mkdir /usr/share/nginx/
+
+COPY custom-docker-php-entrypoint /usr/local/bin/
+
+WORKDIR /usr/share/nginx/
+
+ENTRYPOINT ["custom-docker-php-entrypoint"]
+CMD ["php-fpm"]

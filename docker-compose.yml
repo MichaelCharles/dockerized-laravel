@@ -6,7 +6,7 @@ services:
     ports:
       - '80:80'
       - '433:433'
-      - '22:22'
+      - '1022:22'
     links:
       - postgres
       - php
@@ -22,6 +22,8 @@ services:
     volumes:
       - ./content/:/usr/share/nginx/html:rw
       - ./postgres/data:/var/lib/postgresql/data:rw
+      - ./project-defaults.env:/usr/share/nginx/project-defaults.env
+      - composer-cache:/root/.composer/cache
   postgres:
     restart: always
     build:
@@ -60,5 +62,8 @@ services:
     ports:
       - 8000:8080
     environment:
-      - C9_WORKSPACE=/usr/share/nginx/html
+      - C9_WORKSPACE=/usr/share/nginx/
       #- C9_EXTRA=--auth worker:password
+
+volumes:
+  composer-cache:

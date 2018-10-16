@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if [ -e /usr/share/nginx/html/composer.lock ]; then
+    #if composer.lock exists, just update the project.
+    (cd /usr/share/nginx/html && composer update)
+elif [ -e /usr/share/nginx/html/composer.json ]; then
+    #if composer.json exists, install the project.
+    (cd /usr/share/nginx/html && composer install)
+else
+    #if neither exists, create the project.
+    (cd /usr/share/nginx/ && composer create-project --prefer-dist laravel/laravel html)
+    chmod -R 777 /usr/share/nginx/html/storage
+fi
+
+chmod -R 777 /usr/share/nginx/html/storage
+rm -rf /usr/share/nginx/html/.env
+cp /usr/share/nginx/project-defaults.env /usr/share/nginx/html/.env
+
+set -e
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- php "$@"
+fi
+
+exec "$@"
