@@ -1,0 +1,64 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1.15.5
+    container_name: 'nginx'
+    ports:
+      - '80:80'
+      - '433:433'
+      - '22:22'
+    links:
+      - postgres
+      - php
+    volumes:
+      - ./content/:/usr/share/nginx/html:rw
+      - ./nginx/conf.d:/etc/nginx/conf.d:rw
+  php:
+    build:    
+        context: ./php/
+    container_name: 'php'
+    ports:
+      - '9000:9000'
+    volumes:
+      - ./content/:/usr/share/nginx/html:rw
+      - ./postgres/data:/var/lib/postgresql/data:rw
+  postgres:
+    restart: always
+    build:
+        context: ./postgres/
+    container_name: 'postgres'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'laravel'
+      POSTGRES_PASSWORD: 'laravel'
+      POSTGRES_DB: 'laravel'
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data:rw
+  adminer:
+    build:
+        context: ./adminer/
+    container_name: 'adminer'
+    restart: always
+    links:
+      - postgres
+    ports:
+      - 8080:8080
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
+    volumes:
+      # Make Adminer a bit prettier.
+      - ./adminer/adminer.css:/var/www/html/adminer.css
+      # This is a custom index file to setup Adminer
+      # to use our database by default.
+      - ./adminer/index.php:/var/www/html/index.php
+  c9:
+    container_name: c9
+    image: eeacms/cloud9
+    volumes_from:
+      - nginx
+    ports:
+      - 8000:8080
+    environment:
+      - C9_WORKSPACE=/usr/share/nginx/html
+      #- C9_EXTRA=--auth worker:password
