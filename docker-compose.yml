@@ -56,13 +56,15 @@ services:
       - ./adminer/index.php:/var/www/html/index.php
   c9:
     container_name: c9
-    image: eeacms/cloud9
+    image: mcaubrey/c9-php72
+    #build: 
+    #    context: ./c9
     volumes_from:
       - nginx
     ports:
       - 8000:8080
     environment:
-      - C9_WORKSPACE=/usr/share/nginx/
+      - C9_WORKSPACE=/usr/share/nginx/html
       #- C9_EXTRA=--auth worker:password
 
 volumes:
