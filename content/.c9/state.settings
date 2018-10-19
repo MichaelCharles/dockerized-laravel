@@ -1,0 +1,193 @@
+{
+    "console": {
+        "@expanded": true,
+        "@height": 487,
+        "@maximized": "false",
+        "json()": {
+            "meta": {
+                "accessList": [
+                    "tab1"
+                ]
+            },
+            "name": "pane1",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "tab1",
+                    "path": "",
+                    "className": [
+                        "tab1"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1539934615097
+                        },
+                        "filter": true,
+                        "title": "bash - \"c459c307a601\"",
+                        "tooltip": "bash - \"c459c307a601\"",
+                        "terminal": {
+                            "id": "devel_585",
+                            "cwd": "",
+                            "width": 1483,
+                            "height": 461
+                        }
+                    },
+                    "editorType": "terminal",
+                    "active": true
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
+    },
+    "experiments": {
+        "@@enabled": true,
+        "@autosave": 0,
+        "@flat-dark": 0,
+        "@git": 1,
+        "@go_completion": 0,
+        "@mount": 0,
+        "@plugin-manager": 1,
+        "@plugins": 0,
+        "@sdk": 0,
+        "@test": 0
+    },
+    "ext": {
+        "counters": {
+            "@ace": 1,
+            "@acestatus": 1,
+            "@datagrid": 1,
+            "@divider": 4,
+            "@document": 7,
+            "@form": 6,
+            "@immediate": 1,
+            "@menu": 5,
+            "@menuitem": 13,
+            "@pane": 2,
+            "@preferences": 1,
+            "@session": 7,
+            "@tab": 1,
+            "@undoManager": 7,
+            "@welcome": 1
+        }
+    },
+    "findinfiles": {
+        "@console": "true",
+        "@matchcase": "false",
+        "@regex": "false",
+        "@wholeword": "false"
+    },
+    "menus": {
+        "@minimized": false
+    },
+    "nak": {
+        "@installed": true
+    },
+    "openfiles": {
+        "@hidetree": false
+    },
+    "panecycle": {
+        "json()": [
+            "tab32",
+            "tab1"
+        ]
+    },
+    "panels": {
+        "@active-left": "tree",
+        "@width-left": 365,
+        "commands.panel": {
+            "@enabled": "true",
+            "@name": "commands.panel"
+        },
+        "debugger": {
+            "@enabled": "true",
+            "@name": "debugger"
+        },
+        "navigate": {
+            "@enabled": "true",
+            "@name": "navigate"
+        },
+        "outline": {
+            "@enabled": "true",
+            "@name": "outline"
+        },
+        "scm": {
+            "@enabled": "true",
+            "@name": "scm"
+        },
+        "tree": {
+            "@enabled": "true",
+            "@name": "tree"
+        }
+    },
+    "projecttree": {
+        "@scrollpos": 92,
+        "@showfs": true,
+        "expanded": {
+            "json()": [
+                "/",
+                "/resources/views/projects",
+                "/storage/app/public",
+                "/database/factories",
+                "/database/migrations",
+                "/app/Http/Middleware",
+                "/vendor/laravel/framework",
+                "/vendor/laravel/framework/src",
+                "/vendor/laravel/framework/src/Illuminate",
+                "/resources",
+                "/routes",
+                "/app",
+                "/app/Http",
+                "/app/Http/Controllers",
+                "/resources/views"
+            ]
+        }
+    },
+    "recentfiles": {
+        "json()": []
+    },
+    "tabs": {
+        "json()": {
+            "focus": "/app/Http/Controllers/ProjectsController.php",
+            "meta": {
+                "accessList": [
+                    "tab32"
+                ]
+            },
+            "name": "pane0",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "tab32",
+                    "path": "/app/Http/Controllers/ProjectsController.php",
+                    "className": [
+                        "tab32",
+                        "focus"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1539938182733
+                        },
+                        "filter": true,
+                        "title": "ProjectsController.php",
+                        "tooltip": "/app/Http/Controllers/ProjectsController.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": true
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
+    },
+    "tree_selection": {
+        "json()": [
+            "/resources/views/layout.blade.php"
+        ]
+    }
+}
