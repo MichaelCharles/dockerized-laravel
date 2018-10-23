@@ -11,13 +11,33 @@
 |
 */
 
+
+
+/*
+    GET /projects (index)
+    GET /projects/create (create)
+    GET /projects/1 (show)
+    POST /projects (store)
+    GET /projects/1/edit (edit)
+    PATCH /projects/1 (update) <-- id
+    DELETE /projects/1 (destroy)
+
+Route::get('/projects', 'ProjectsController@index');
+Route::post('/projects', 'ProjectsController@store');
+Route::get('/projects/create', 'ProjectsController@create');
+Route::get('/projects/{project}', 'ProjectsController@show');
+Route::get('/projects/{project}/edit', 'ProjectsController@edit');
+Route::patch('/projects/{project}', 'ProjectsController@update');
+Route::delete('/projects/{project}', 'ProjectsController@destroy');
+*/
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/projects');
 });
 
 
-Route::get('/projects', 'ProjectsController@index');
+Route::resource('projects', 'ProjectsController');
 
-Route::post('/projects', 'ProjectsController@store');
-
-Route::get('/projects/create', 'ProjectsController@create');
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');

@@ -3,16 +3,18 @@
 @section('title', 'Projects Page')
 
 @section('content')
-    <h1>Projects</h1>
+    <h1 class="title">Projects</h1>
     
     <ul>
         @foreach($projects as $project)
-        
-            <li><h3>{{ $project->title }}</h3></li>
-            
-            <p>{{ $project->description }}</p>
-        
+            <a href="/projects/{{ $project->id }}">
+            <li>
+                {{ $project->title }}
+            </li>
+            </a>
         @endforeach
+        
+        <a href="/projects/create"><button class="button is-link">Create new</button></a>
         
     </ul>
 @endsection

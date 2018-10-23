@@ -1,36 +1,47 @@
 {
+    "ace": {
+        "search": {
+            "@backwards": "false",
+            "@highlightmatches": "true",
+            "@matchcase": "false",
+            "@preservecase": "false",
+            "@regex": "false",
+            "@wholeword": "false",
+            "@wraparound": "true"
+        }
+    },
     "console": {
         "@expanded": true,
-        "@height": 487,
+        "@height": 295,
         "@maximized": "false",
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab1"
+                    "tab0"
                 ]
             },
             "name": "pane1",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab1",
+                    "name": "tab0",
                     "path": "",
                     "className": [
-                        "tab1"
+                        "tab0"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1539934615097
+                            "timestamp": 1540300769918
                         },
                         "filter": true,
-                        "title": "bash - \"c459c307a601\"",
-                        "tooltip": "bash - \"c459c307a601\"",
+                        "title": "bash - \"e46fe66d3b3c\"",
+                        "tooltip": "bash - \"e46fe66d3b3c\"",
                         "terminal": {
-                            "id": "devel_585",
+                            "id": "devel_412",
                             "cwd": "",
                             "width": 1483,
-                            "height": 461
+                            "height": 269
                         }
                     },
                     "editorType": "terminal",
@@ -60,16 +71,16 @@
             "@acestatus": 1,
             "@datagrid": 1,
             "@divider": 4,
-            "@document": 7,
-            "@form": 6,
+            "@document": 14,
+            "@form": 5,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
             "@preferences": 1,
-            "@session": 7,
-            "@tab": 1,
-            "@undoManager": 7,
+            "@session": 14,
+            "@tab": 7,
+            "@undoManager": 14,
             "@welcome": 1
         }
     },
@@ -90,12 +101,13 @@
     },
     "panecycle": {
         "json()": [
-            "tab32",
-            "tab1"
+            "tab2",
+            "tab0"
         ]
     },
     "panels": {
         "@active-left": "tree",
+        "@active-right": "none",
         "@width-left": 365,
         "commands.panel": {
             "@enabled": "true",
@@ -123,7 +135,7 @@
         }
     },
     "projecttree": {
-        "@scrollpos": 92,
+        "@scrollpos": 110,
         "@showfs": true,
         "expanded": {
             "json()": [
@@ -132,16 +144,18 @@
                 "/storage/app/public",
                 "/database/factories",
                 "/database/migrations",
-                "/app/Http/Middleware",
                 "/vendor/laravel/framework",
                 "/vendor/laravel/framework/src",
                 "/vendor/laravel/framework/src/Illuminate",
                 "/resources",
                 "/routes",
-                "/app",
-                "/app/Http",
+                "/resources/views",
+                "/public",
+                "/public/css",
                 "/app/Http/Controllers",
-                "/resources/views"
+                "/app/Http",
+                "/app",
+                "/database"
             ]
         }
     },
@@ -150,9 +164,17 @@
     },
     "tabs": {
         "json()": {
-            "focus": "/app/Http/Controllers/ProjectsController.php",
+            "focus": "/app/Http/Controllers/ProjectTasksController.php",
             "meta": {
                 "accessList": [
+                    "tab2",
+                    "tab3",
+                    "tab1",
+                    "tab16",
+                    "tab17",
+                    "tab6",
+                    "tab4",
+                    "tab5",
                     "tab32"
                 ]
             },
@@ -163,13 +185,12 @@
                     "name": "tab32",
                     "path": "/app/Http/Controllers/ProjectsController.php",
                     "className": [
-                        "tab32",
-                        "focus"
+                        "tab32"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1539938182733
+                            "timestamp": 1540304466542
                         },
                         "filter": true,
                         "title": "ProjectsController.php",
@@ -177,7 +198,168 @@
                         "ace": {}
                     },
                     "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab16",
+                    "path": "/app/Project.php",
+                    "className": [
+                        "tab16"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540305441004
+                        },
+                        "filter": true,
+                        "title": "Project.php",
+                        "tooltip": "/app/Project.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab17",
+                    "path": "/resources/views/projects/show.blade.php",
+                    "className": [
+                        "tab17"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540305334806
+                        },
+                        "filter": true,
+                        "title": "show.blade.php",
+                        "tooltip": "/resources/views/projects/show.blade.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab1",
+                    "path": "/routes/web.php",
+                    "className": [
+                        "tab1"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540304890651
+                        },
+                        "filter": true,
+                        "title": "web.php",
+                        "tooltip": "/routes/web.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab2",
+                    "path": "/app/Http/Controllers/ProjectTasksController.php",
+                    "className": [
+                        "tab2",
+                        "focus"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540306635290
+                        },
+                        "filter": true,
+                        "title": "ProjectTasksController.php",
+                        "tooltip": "/app/Http/Controllers/ProjectTasksController.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
                     "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab3",
+                    "path": "/app/Task.php",
+                    "className": [
+                        "tab3"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540306636996
+                        },
+                        "filter": true,
+                        "title": "Task.php",
+                        "tooltip": "/app/Task.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab4",
+                    "path": "/resources/views/projects/create.blade.php",
+                    "className": [
+                        "tab4"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540305261005
+                        },
+                        "filter": true,
+                        "title": "create.blade.php",
+                        "tooltip": "/resources/views/projects/create.blade.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab5",
+                    "path": "/resources/views/errors.blade.php",
+                    "className": [
+                        "tab5"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540305258923
+                        },
+                        "filter": true,
+                        "title": "errors.blade.php",
+                        "tooltip": "/resources/views/errors.blade.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab6",
+                    "path": "/resources/views/layout.blade.php",
+                    "className": [
+                        "tab6"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1540305294554
+                        },
+                        "filter": true,
+                        "title": "layout.blade.php",
+                        "tooltip": "/resources/views/layout.blade.php",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
                 }
             ],
             "skin": "editor_tab",
@@ -187,7 +369,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/resources/views/layout.blade.php"
+            "/app/Task.php"
         ]
     }
 }

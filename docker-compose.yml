@@ -55,10 +55,10 @@ services:
       # to use our database by default.
       - ./adminer/index.php:/var/www/html/index.php
   c9:
-    #container_name: c9
+    container_name: c9
     image: mcaubrey/c9-php72
-    build: 
-        context: ./c9
+    #build: 
+    #    context: ./c9
     volumes_from:
       - nginx
     ports:
