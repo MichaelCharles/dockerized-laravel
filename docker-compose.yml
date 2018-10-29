@@ -14,7 +14,9 @@ services:
       - ./content/:/usr/share/nginx/html:rw
       - ./nginx/conf.d:/etc/nginx/conf.d:rw
   php:
-    image: mcaubrey/php-fpm-composer
+    #image: mcaubrey/php-fpm-composer
+    build:
+        context: ./php/
     container_name: 'php'
     ports:
       - '9000:9000'
@@ -39,7 +41,9 @@ services:
     volumes:
       - ./postgres/data:/var/lib/postgresql/data:rw
   adminer:
-    image: mcaubrey/adminer
+    #image: mcaubrey/adminer
+    build:
+        context: ./adminer/
     container_name: 'adminer'
     restart: always
     links:
@@ -54,7 +58,9 @@ services:
       ADMINER_DEFAULT_DATABASE: "laravel"
   c9:
     container_name: c9
-    image: mcaubrey/c9-php72
+    #image: mcaubrey/c9-php72
+    build:
+        context: ./c9/
     volumes_from:
       - nginx
     ports:
