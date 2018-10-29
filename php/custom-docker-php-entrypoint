@@ -1,5 +1,6 @@
 #!/bin/sh
 
+if [ $RUN_COMPOSER = "yes" ]; then
 if [ -e /usr/share/nginx/html/composer.lock ]; then
     #if composer.lock exists, just update the project.
     (cd /usr/share/nginx/html && composer update)
@@ -8,14 +9,17 @@ elif [ -e /usr/share/nginx/html/composer.json ]; then
     (cd /usr/share/nginx/html && composer install)
 else
     #if neither exists, create the project.
-    (cd /usr/share/nginx/ && composer create-project --prefer-dist laravel/laravel html)
-    chmod -R 777 /usr/share/nginx/html/storage
+    (cd /usr/share/nginx/ && composer create-project --prefer-dist $COMPOSER_PACKAGE html)
 fi
 
+if [ -e /usr/share/nginx/laravel.env ]; then
 chmod -R 777 /usr/share/nginx/html/storage
-chmod 777 /usr/share/nginx/html/bootstrap/cache
+chmod -R 777 /usr/share/nginx/html/bootstrap
 rm -rf /usr/share/nginx/html/.env
-cp /usr/share/nginx/project-defaults.env /usr/share/nginx/html/.env
+cp /usr/share/nginx/laravel.env /usr/share/nginx/html/.env
+fi
+
+fi
 
 set -e
 

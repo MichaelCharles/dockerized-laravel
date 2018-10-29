@@ -11,10 +11,11 @@ namespace docker {
 					$form = ob_get_clean();
 
 					$stageOne = str_replace('name="auth[server]" value="" title="hostname[:port]"', 'name="auth[server]" value="'.($_ENV['ADMINER_DEFAULT_SERVER'] ?: 'db').'" title="hostname[:port]"', $form);
-					$stageTwo = str_replace('name="auth[username]" id="username" value=""', 'name="auth[username]" id="username" value="laravel"', $stageOne);
+					$stageTwo = str_replace('name="auth[username]" id="username" value=""', 'name="auth[username]" id="username" value="'.($_ENV['ADMINER_DEFAULT_USERNAME'] ?: '').'"', $stageOne);
 					$stageThree = str_replace('<option value="server" selected>MySQL', '<option value="server">MySQL', $stageTwo);
-					$stageFour = str_replace('<option value="pgsql">PostgreSQL','<option value="pgsql" selected>PostgreSQL',$stageThree);
-					echo str_replace('name="auth[db]" value=""', 'name="auth[db]" value="laravel"', $stageFour);
+					$stageFour = str_replace('<option value="'.($_ENV['ADMINER_DEFAULT_SYSTEM'] ?: 'server').'">','<option value="'.($_ENV['ADMINER_DEFAULT_SYSTEM'] ?: 'server').'" selected>',$stageThree);
+                                        $stageFive = str_replace('<input type="password" name="auth[password]"', '<input type="password" name="auth[password]" value="'.($_ENV['ADMINER_DEFAULT_PASSWORD'] ?: '').'"', $stageFour);
+					echo str_replace('name="auth[db]" value=""', 'name="auth[db]" value="'.($_ENV['ADMINER_DEFAULT_DATABASE'] ?: '').'"', $stageFive);
 
 					return $return;
 				}

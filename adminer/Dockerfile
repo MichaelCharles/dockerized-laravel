@@ -1,4 +1,3 @@
 FROM adminer
 
-USER root
-RUN apk update && apk upgrade && apk add bash vim
+COPY  ./index.php /var/www/html/index.php
