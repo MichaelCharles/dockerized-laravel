@@ -22,12 +22,21 @@ services:
       - '9000:9000'
     environment:
       RUN_COMPOSER: "yes"
-      COMPOSER_PACKAGE: 'laravel/laravel=5.4.*' # Make this 'laravel/laravel' for the latest laravel release. This will also work with other composer packages, but support for them may not work out of the box.
+      COMPOSER_PACKAGE: 'laravel/laravel' # You can specify a specific version
+                                          # like so, 'laravel/laravel=5.4.*'. This
+                                          # will also work with other composer
+                                          # packages, but support for them may
+                                          # not work out of the box.
     volumes:
       - ./content/:/usr/share/nginx/html:rw
       - ./postgres/data:/var/lib/postgresql/data:rw 
-      - ./laravel.env:/usr/share/nginx/laravel.env # Existance of a laravel.env tells the container to perform a setup for laravel, setting permissions and the specified environment variables.
-      - composer-cache:/root/.composer/cache # Composer volume allows composer to use its cache between builds.
+      - ./laravel.env:/usr/share/nginx/laravel.env # Existance of a laravel.env tells
+                                                   # the container to perform a setup
+                                                   # for laravel, setting permissions
+                                                   # and the specified environment
+                                                   # variables.
+      - composer-cache:/root/.composer/cache # Composer volume allows composer to use
+                                             # its cache between builds.
   postgres:
     restart: always
     image: postgres:11
@@ -51,8 +60,10 @@ services:
     ports:
       - 8080:8080
     environment:
-      ADMINER_DEFAULT_SYSTEM: "pgsql" # Type of database as recognized by Adminer: pgsql = PostgreSQL
-      ADMINER_DEFAULT_SERVER: "postgres" # Name of docker container running your database.
+      ADMINER_DEFAULT_SYSTEM: "pgsql" # Type of database as recognized by
+                                      # Adminer -- pgsql = PostgreSQL
+      ADMINER_DEFAULT_SERVER: "postgres" # Name of docker container running
+                                         # your database.
       ADMINER_DEFAULT_USERNAME: "laravel"
       ADMINER_DEFAULT_PASSWORD: ""
       ADMINER_DEFAULT_DATABASE: "laravel"
