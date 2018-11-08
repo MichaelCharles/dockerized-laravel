@@ -1,5 +1,8 @@
 FROM eeacms/cloud9
 
+# This installs php 7.2 and the necessary extensions
+# to work on a Laravel project.
+
 RUN apt-get update -y
 RUN apt-get upgrade -y
 

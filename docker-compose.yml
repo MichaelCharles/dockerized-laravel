@@ -1,25 +1,27 @@
 version: '2.1'
 services:
   nginx:
-    image: nginx:1.15.5
+    #image: mcaubrey/nginx-for-fpm
+    build:
+        context: ./nginx/
     container_name: 'nginx'
     ports:
       - '80:80'
       - '433:433'
-      - '1022:22'
-    links:
-      - postgres
+    depends_on:
       - php
     volumes:
       - ./content/:/usr/share/nginx/html:rw
-      - ./nginx/conf.d:/etc/nginx/conf.d:rw
+    environment:
+      FPM_HOST: 'php'
+      FPM_PORT: '9000'
   php:
     #image: mcaubrey/php-fpm-composer
     build:
         context: ./php/
     container_name: 'php'
-    ports:
-      - '9000:9000'
+    depends_on:
+      - postgres
     environment:
       RUN_COMPOSER: "yes"
       COMPOSER_PACKAGE: 'laravel/laravel' # You can specify a specific version
@@ -29,7 +31,6 @@ services:
                                           # not work out of the box.
     volumes:
       - ./content/:/usr/share/nginx/html:rw
-      - ./postgres/data:/var/lib/postgresql/data:rw 
       - ./laravel.env:/usr/share/nginx/laravel.env # Existance of a laravel.env tells
                                                    # the container to perform a setup
                                                    # for laravel, setting permissions
@@ -38,11 +39,8 @@ services:
       - composer-cache:/root/.composer/cache # Composer volume allows composer to use
                                              # its cache between builds.
   postgres:
-    restart: always
     image: postgres:11
     container_name: 'postgres'
-    ports:
-      - '5432:5432'
     environment:
       POSTGRES_USER: 'laravel'
       POSTGRES_PASSWORD: 'laravel'
@@ -54,8 +52,7 @@ services:
     build:
         context: ./adminer/
     container_name: 'adminer'
-    restart: always
-    links:
+    depends_on:
       - postgres
     ports:
       - 8080:8080
@@ -77,7 +74,8 @@ services:
     ports:
       - 8000:8080
     environment:
-      - C9_WORKSPACE=/usr/share/nginx/html
-      #- C9_EXTRA=--auth worker:password
+      C9_WORKSPACE: '/usr/share/nginx/html'
+      # Uncomment the following line to enable user authorization.
+      # C9_EXTRA: '--auth worker:password'
 volumes:
   composer-cache:
