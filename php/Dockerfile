@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     libssl-dev \
     libzip-dev \
-    git
+    git \
+    dos2unix
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/var/lib/postgresql
 RUN docker-php-ext-install    pdo_pgsql 
@@ -34,7 +35,9 @@ RUN mkdir /usr/share/nginx/
 
 COPY custom-docker-php-entrypoint /usr/local/bin/
 
-WORKDIR /usr/share/nginx/
+RUN dos2unix /usr/local/bin/custom-docker-php-entrypoint
 
+RUN composer global require hirak/prestissimo
+WORKDIR /usr/share/nginx/
 ENTRYPOINT ["custom-docker-php-entrypoint"]
 CMD ["php-fpm"]

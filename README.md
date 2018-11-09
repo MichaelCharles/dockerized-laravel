@@ -5,22 +5,15 @@ This is my attempt at putting together a docker container setup to easily get st
 -----------
 
 ## Table of Contents
- * [Quickstart](#quickstart)
+ * [Quick Start](#quick-start)
  * [PHP](#php)
  * [Nginx](#nginx)
  * [Adminer](#adminer)
  * [Cloud9](#cloud9)
 
 -----------
-## Quickstart
-I've prepared a sample `docker-compose.yml` file using my custom images as well as an accompanying `laravel.env` file. Copy and paste the following command to curl them into your project directory to get started.
-```
-<not available yet>
-```
-
-After that you can run `docker-compose up -d` to get started.
-
-Alternatively, you could copy and paste the following into their respective files.
+## Quick Start
+I've prepared a sample `docker-compose.yml` file using the custom images built by this repository. I recommend including a `.env` file setting `MY_TOKEN` to a personal Github access token. This will be used by  `hirak/prestissimo` to make Composer run faster. If you add a file named `laravel.env` in the same directory as `docker-compose.yml`, that file will be copied into the resulting Laravel project as its `.env` file. 
 
 #### `docker-compose.yml`
 ```
@@ -46,11 +39,12 @@ services:
       - postgres
     environment:
       RUN_COMPOSER: "yes"
+      GITHUB_TOKEN: $MY_TOKEN
       COMPOSER_PACKAGE: 'laravel/laravel' 
     volumes:
       - ./content/:/usr/share/nginx/html:rw
-      - ./laravel.env:/usr/share/nginx/laravel.env
-      - composer-cache:/root/.composer/cache
+      - ./laravel.env:/usr/share/nginx/laravel.env 
+      - composer-cache:/root/.composer/cache 
   postgres:
     image: postgres:11
     container_name: 'postgres'
@@ -58,6 +52,8 @@ services:
       POSTGRES_USER: 'laravel'
       POSTGRES_PASSWORD: 'laravel'
       POSTGRES_DB: 'laravel'
+      TZ: 'GMT+9'
+      PGTZ: 'GMT+9'
     volumes:
       - postgres-data:/var/lib/postgresql/data:rw
   adminer:
@@ -68,16 +64,14 @@ services:
     ports:
       - 8080:8080
     environment:
-      ADMINER_DEFAULT_SYSTEM: "pgsql" 
-      ADMINER_DEFAULT_SERVER: "postgres"
+      ADMINER_DEFAULT_SYSTEM: "pgsql"
+      ADMINER_DEFAULT_SERVER: "postgres" 
       ADMINER_DEFAULT_USERNAME: "laravel"
       ADMINER_DEFAULT_PASSWORD: ""
       ADMINER_DEFAULT_DATABASE: "laravel"
   c9:
     container_name: c9
-    #image: mcaubrey/c9-php72
-    build:
-        context: ./c9/
+    image: mcaubrey/c9-php72
     volumes_from:
       - nginx
     ports:
@@ -88,48 +82,7 @@ volumes:
   composer-cache:
   postgres-data:
 ```
-#### `laravel.env`
-```
-APP_NAME=Laravel
-APP_ENV=local
-APP_KEY=base64:o+zOivbYUZUSXsohWm2Kyknu3ujJzXgipzeMpco2obw=
-APP_DEBUG=true
-APP_URL=http://localhost
 
-LOG_CHANNEL=stack
-
-DB_CONNECTION=pgsql
-DB_HOST=postgres
-DB_PORT=5432
-DB_DATABASE=laravel
-DB_USERNAME=laravel
-DB_PASSWORD=laravel
-
-BROADCAST_DRIVER=log
-CACHE_DRIVER=file
-QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-
-REDIS_HOST=redis
-REDIS_PASSWORD=redis
-REDIS_PORT=6379
-
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
-PUSHER_APP_CLUSTER=mt1
-
-MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
-```
 -----------
 ## PHP
 **[`mcaubrey/php-fpm-composer` on Docker Hub](https://hub.docker.com/r/mcaubrey/php-fpm-composer/)**
